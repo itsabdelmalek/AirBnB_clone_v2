@@ -24,7 +24,7 @@ class test_basemodel(unittest.TestCase):
     def tearDown(self):
         try:
             os.remove('file.json')
-        except:
+        except as e:
             pass
 
     def test_default(self):
@@ -97,3 +97,17 @@ class test_basemodel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertFalse(new.created_at == new.updated_at)
+
+    def test_create_with_parameters(self):
+        """ Test creating an object with parameters """
+        params = {'name': 'My House', 'age': 5, 'price': 100.50}
+        new_obj = BaseModel(**params)
+        self.assertEqual(new_obj.name, 'My House')
+        self.assertEqual(new_obj.age, 5)
+        self.assertEqual(new_obj.price, 100.50)
+
+    def test_create_with_invalid_parameters(self):
+        """ Test creating an object with invalid parameters """
+        inv_params = {'name': 'My House', 'age': 'invalid', 'price': 'invalid'}
+        with self.assertRaises(ValueError):
+            new_obj = BaseModel(**inv_params)
