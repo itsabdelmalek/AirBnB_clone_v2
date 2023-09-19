@@ -31,9 +31,9 @@ class BaseModel:
                 if key in ["created_at", "updated_at"]:
                     date = datetime.datetime.strptime(
                         value, "%Y-%m-%dT%H:%M:%S.%f")
-                    exec("self.{} = {}".format(key, repr(date)))
+                    setattr(self, key, date)
                 elif key != "__class__":
-                    exec("self.{} = {}".format(key, repr(value)))
+                    setattr(self, key, value)
 
     def __str__(self):
         """Returns the str representation of the BaseModel instance"""
