@@ -62,17 +62,6 @@ class Place(BaseModel, Base):
         amenity_ids = []
 
         @property
-        def reviews(self):
-            """Get a list of all linked Reviews."""
-            from models import storage
-            review_list = []
-            review_all = storage.all(Review)
-            for review in review_all.values():
-                if review.place_id == self.id:
-                    review_list.append(review)
-            return review_list
-
-        @property
         def amenities(self):
             """Get linked amenities"""
             from models import storage
