@@ -15,7 +15,7 @@ class TestBaseModel(unittest.TestCase):
     """Unittests for testing the BaseModel class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """BaseModel testing by :
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dict.

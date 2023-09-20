@@ -16,7 +16,7 @@ class test_Amenity(test_basemodel):
     """Unittests for testing the Amenity class"""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """Amenity testing"""
 
         try:

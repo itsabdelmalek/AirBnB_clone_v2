@@ -19,7 +19,7 @@ class TestFileStorage(unittest.TestCase):
     """Unittests for testing the FileStorage class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """FileStorage testing by:
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dictionary.

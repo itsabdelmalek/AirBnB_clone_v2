@@ -19,7 +19,7 @@ class TestState(unittest.TestCase):
     """Unittests for testing the State class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """State testing by:
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dictionary.

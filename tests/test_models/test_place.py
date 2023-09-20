@@ -23,7 +23,7 @@ class TestPlace(unittest.TestCase):
     """Unittests for testing the Place class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """Place testing by:
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dict.

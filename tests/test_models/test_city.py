@@ -19,7 +19,7 @@ class TestCity(unittest.TestCase):
     """Unittests for testing the City class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """City testing by :
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dic.

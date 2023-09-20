@@ -18,7 +18,7 @@ class TestUser(unittest.TestCase):
     """Unittests for testing the User class."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """User testing by:
             Temporarily renaming any existing file.json.
             Reseting FileStorage objects dictionary.

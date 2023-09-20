@@ -15,7 +15,7 @@ class TestHBNBCommand(unittest.TestCase):
     """Unittests for testing the HBNB command interpreter."""
 
     @classmethod
-    def set_up(cls):
+    def setUp(cls):
         """HBNBCommand testing reset_obj by :
             Temporarily renaming existing file.json.
             Reseting FileStorage objects dictionary.
