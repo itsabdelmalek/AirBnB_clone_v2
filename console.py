@@ -194,7 +194,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        new_instance = HBNBCommand.classes[class_name]()
+        parameters = {}
         for index in range(1, len(args)):
             array = args[index].split("=")
             if len(array) == 2:
@@ -203,10 +203,11 @@ class HBNBCommand(cmd.Cmd):
                     continue
                 value = self.parse_value(array[1])
                 if value is not None:
-                    setattr(new_instance, key, value)
+                    parameters[key] = value
             else:
                 pass
 
+        new_instance = HBNBCommand.classes[class_name](**parameters)
         new_instance.save()
         print(new_instance.id)
 
