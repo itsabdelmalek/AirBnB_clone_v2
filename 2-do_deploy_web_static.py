@@ -2,6 +2,7 @@
 """
 This script distributes an archive to web servers.
 """
+
 import os.path
 from fabric.api import *
 
@@ -47,4 +48,7 @@ def do_deploy(archive_path):
     if run("ln -s /data/web_static/releases/{}/ /data/web_static/current".
            format(name)).failed is True:
         return False
+
+    print("New version deployed!")
+
     return True
