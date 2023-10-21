@@ -4,6 +4,8 @@ This is a Flask web application.
 """
 
 from models import storage
+from models.state import State
+from models.city import City
 from flask import Flask
 from flask import render_template
 
@@ -16,7 +18,7 @@ def states():
     Displays a HTML page with the list of all State objects
     present in DBStorage sorted by name (A->Z)
     """
-    states = storage.all("State")
+    states = storage.all(State).values()
     return render_template("9-states.html", state=states)
 
 
@@ -26,14 +28,16 @@ def states_id(id):
     Displays a HTML page with the details of a specific State
     including linked City objects.
     """
-    for state in storage.all("State").values():
-        if state.id == id:
-            return render_template("9-states.html", state=state)
-    return render_template("9-states.html")
+    state = storage.get(State, id)
+    if state:
+        cities = sorted(state.cities, key=lambda x: x.name)
+        return render_template("9-states.html", state=state, cities=cities)
+    else:
+        return render_template("9-states.html", not_found=True)
 
 
-@app.delete_fjson_appcontext
-def delete_fjson(exc):
+@app.teardown_appcontext
+def teardown(exception):
     """
     Removes the current SQLAlchemy session.
     """
@@ -41,4 +45,4 @@ def delete_fjson(exc):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5000)
