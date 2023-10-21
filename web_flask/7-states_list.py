@@ -4,6 +4,7 @@ This is a Flask web application.
 """
 
 from models import storage
+from models.state import State
 from flask import Flask
 from flask import render_template
 
