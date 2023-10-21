@@ -29,7 +29,7 @@ class FileStorage:
             class_name = cls.__name__
             for k, v in FileStorage.__objects.items():
                 if k.split('.')[0] == class_name:
-                    print_dict[k] = str(v)
+                    print_dict[k] = (v)
             return print_dict
         else:
             return FileStorage.__objects
