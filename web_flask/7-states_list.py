@@ -4,11 +4,10 @@ This is a Flask web application.
 """
 
 from models import storage
-from models.state import State
 from flask import Flask
 from flask import render_template
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__)
 
 
 @app.route("/states_list", strict_slashes=False)
@@ -17,13 +16,12 @@ def states_list():
     Display a HTML page with the list of all State objects
     sorted by name (A->Z)
     """
-    states = storage.all("State")
-    states = dict(sorted(states.items(), key=lambda item: item[1].name))
+    states = storage.all("State").values()
     return render_template("7-states_list.html", states=states)
 
 
 @app.teardown_appcontext
-def teardown(error):
+def teardown(exception):
     """
     Removes the current SQLAlchemy session.
     """
@@ -31,4 +29,4 @@ def teardown(error):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", port=5000)
