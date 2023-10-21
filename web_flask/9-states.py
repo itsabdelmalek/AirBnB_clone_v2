@@ -23,10 +23,12 @@ def states():
     return render_template("9-states.html", not_found=False, data=states,
                            id=None)
 
+
 @app.route("/states/<id>", strict_slashes=False)
 def state_id(id):
     """Displays an HTML page with info about <id>, if it exists."""
-    states = dict(sorted(storage.all(State).items(), key=lambda item: item[1].name))
+    states = dict(sorted(storage.all(State).items(), key=lambda
+                  item: item[1].name))
     for key, state in states.items():
         if state.id == id:
             s_all = storage.all(City)
@@ -34,10 +36,12 @@ def state_id(id):
             for key, city in s_all.items():
                 if state.id == city.state_id:
                     cities[key] = city
-            cities = dict(sorted(cities.items(), key=lambda item: item[1].name))
+            cities = dict(sorted(cities.items(), key=lambda item: item[1].name)
+                          )
             return render_template("9-states.html", name=state.name,
                                    not_found=False, data=cities, id=1)
     return render_template("9-states.html", not_found=True, data=states)
+
 
 @app.teardown_appcontext
 def teardown_context(exception):
